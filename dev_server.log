@@ -1,0 +1,13 @@
+
+> my-meteo-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 508ms
+
+○ Compiling / ...
+ GET / 200 in 5.2s (next.js: 4.8s, application-code: 414ms)
+ GET /previsioni 200 in 2.2s (next.js: 2.2s, application-code: 53ms)
+✓ Compiled in 30ms
