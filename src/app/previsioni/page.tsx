@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   CloudRain,
@@ -9,7 +9,6 @@ import {
   Wind,
   Thermometer,
   AlertTriangle,
-  RefreshCcw,
   Navigation,
   Search,
   Menu
@@ -31,8 +30,6 @@ export default function PrevisioniPage() {
   const [isGenerating, setIsGenerating] = useState(true);
   const [refreshCount, setRefreshCount] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
-
-  const lastScrollY = useRef(0);
 
   const generateRandomValues = useCallback(() => {
     setIsGenerating(true);
@@ -67,34 +64,13 @@ export default function PrevisioniPage() {
     const timer = setTimeout(() => {
       setRefreshCount(prev => prev + 1);
       generateRandomValues();
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [refreshCount, generateRandomValues]);
 
-  // Logica Scroll: cambia un valore a caso
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (Math.abs(currentScrollY - lastScrollY.current) > 50) {
-        lastScrollY.current = currentScrollY;
-
-        const changeType = Math.floor(Math.random() * 4);
-        switch (changeType) {
-          case 0: setStagione(STAGIONI[Math.floor(Math.random() * STAGIONI.length)]); break;
-          case 1: setTemperatura(Math.floor(Math.random() * (30 - 5 + 1)) + 5); break;
-          case 2: setPioggia(PIOGGIA_OPTIONS[Math.floor(Math.random() * PIOGGIA_OPTIONS.length)]); break;
-          case 3: setAffidabilita(Math.floor(Math.random() * (100 - 25 + 1)) + 25); break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <div className="min-h-[200vh] bg-[#f8f9fa] text-gray-800 font-sans">
+    <div className="min-h-screen bg-[#f8f9fa] text-gray-800 font-sans">
       {/* Header stile Google */}
       <header className="sticky top-0 bg-white shadow-sm z-10 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-4">
@@ -194,12 +170,6 @@ export default function PrevisioniPage() {
           </div>
         </section>
 
-        <div className="text-center pt-10 text-gray-400 text-sm italic">
-          <p>Prova a scrollare per &quot;migliorare&quot; le previsioni...</p>
-          <div className="animate-bounce mt-4 flex justify-center">
-            <RefreshCcw size={20} />
-          </div>
-        </div>
       </main>
 
       {/* Modal Alert Finale */}

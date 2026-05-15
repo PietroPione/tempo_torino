@@ -14,7 +14,7 @@ export default function Home() {
             Meteo Italia
           </h1>
           <p className="text-gray-500">
-            Le previsioni più accurate (forse) del web
+            Le previsioni più accurate del web
           </p>
         </div>
 
@@ -29,7 +29,7 @@ export default function Home() {
         </Link>
 
         <p className="text-xs text-gray-400">
-          © 2024 MeteoIronico S.p.A. - Dati non garantiti
+          © 2024 IlMeteo S.p.A. - Dati non garantiti
         </p>
       </div>
     </main>
